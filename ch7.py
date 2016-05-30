@@ -1,5 +1,6 @@
 # Chapter 7.9 Exercises
 
+
 import math
 
 # write a function that countdowns to zero
@@ -44,11 +45,14 @@ def newtons_method(a,x):
 
 def mysqrt(a,x):
     while True:
-        y = (x + a/x) / 2
+        y = (x + a/x) / 2.0
         if abs(y-x) < 0.0000001:
-            return x
             break
         x = y
+    return x
+
+
+# mysqrt(4, 3)
 
 def actual_square_method(a):
     return math.sqrt(a)
@@ -60,24 +64,19 @@ def test_square_root():
     a = 1
     x = 4
     while a < 10:
-        y = mysqrt(a,x)
-        square_method = math.sqrt(a)
-        diff = abs(y - square_method)
-        print("\t", a,end=' ')
-        print("\t", y, end=' ')
-        print("\t", square_method, end=' ')
-        y = format(y, ".5f")
-        square_method = format(square_method, ".5f")
-        y = Decimal(y)
-        square_method = Decimal(square_method)
-        diff = abs(y - square_method)
-        print("\tdiff:", diff,)
+        y = Decimal(format(mysqrt(a,x),".10f"))
+        square_method = Decimal(format(math.sqrt(a), ".10f"))
+        diff = format(y - square_method, ".10f")
+        print("\t", a, "\t", y,"\t", square_method,"\t" "diff:",diff,)
         a = a + 1
 
 
-test_square_root()
 
-# Exercise 2 
+
+
+# test_square_root()
+
+# Exercise 2
 # Write a function called eval_loop that iteratively prompts the user,
 # takes the resulting input and evaluates it using eval, and prints the result.
 # It should continue until the user enters 'done', and then return
@@ -91,6 +90,7 @@ def eval_loop():
         else:
             user_input_eval = eval(user_input)
             print(user_input_eval)
+    return eval(user_input)
 
 
 # eval_loop()

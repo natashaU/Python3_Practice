@@ -8,6 +8,7 @@ asses vile
 enfeeble revocation
 dominie dying fetus
 overexercise nile
+brain drill meathook
 """
 
 import random
@@ -18,12 +19,23 @@ def make_list(stringHere):
     for line in fin:
         words = line.strip()
         t+=[words]
+    fin.close()
     return t
 
-def metal_bands():
-    word_list = make_list("words.txt")
-    first_word = random.choice(word_list)
-    metal_words = make_list("metalbands.txt")
-    print(first_word + " " + random.choice(metal_words).lower())
+
+
+
+def metal_bands(words_generated=1):
+    for phrases in range(words_generated):
+        metal_word = random.choice(make_list("metalbands.txt"))
+        question = input("Do you want to choose a word? Type YES or NO: ")
+        if question.upper() == "YES":
+            user_word = input("Type a random word: ")
+            print(user_word + " " + metal_word.lower())
+        else:
+            random_word = random.choice(make_list("words.txt"))
+            print(random_word + " " + metal_word.lower())
 
 metal_bands()
+
+# fin.close()
